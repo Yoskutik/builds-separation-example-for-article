@@ -1,22 +1,37 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const LazyChunk = React.lazy(() => import('./LazyChunk'));
+
+const App = () => {
+  const [shouldShowLazyChunk, setShouldShowLazyChunk] = useState(false);
+
+  const toggleBuild = () => {
+    location.href = window.LEGACY ? `${location.pathname}?es-modern=1` : `${location.pathname}?es-legacy=1`;
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+
         <a
+          onClick={() => setShouldShowLazyChunk(true)}
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
         >
-          Learn React
+          Show build info
         </a>
+
+        <a onClick={toggleBuild} className="App-link">
+          Toggle build
+        </a>
+
+        {shouldShowLazyChunk && (
+          <React.Suspense fallback={null}>
+            <LazyChunk onClick={() => setShouldShowLazyChunk(false)} />
+          </React.Suspense>
+        )}
       </header>
     </div>
   );

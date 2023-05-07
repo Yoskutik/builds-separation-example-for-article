@@ -1,0 +1,39 @@
+{
+  "modern": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": ">0.5% and supports async-functions and supports intersectionobserver and supports promise-finally",
+          "useBuiltIns": "entry",
+          "corejs": "3.30"
+        }
+      ],
+      [
+        "@babel/preset-react",
+        {
+          "useSpread": true
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  },
+  "legacy": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": ">0.25%, not dead, last 3 versions",
+          "useBuiltIns": "entry",
+          "corejs": "3.30"
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  }
+}
