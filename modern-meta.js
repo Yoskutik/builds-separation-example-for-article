@@ -1,1 +1,0 @@
-module.exports={"entryFiles":["eade4170556943057ab8.main.css","ae03ae0fc170d989dfcf.main.js","84e57e7bc2cc3685f9de.vendors.js"],"otherFiles":["f780c9a8613d90e92cd0.165.css","c7983241d7ea5274e35b.165.js","23460f8e7939043038cf.366.css","52e4f81eefb3dcc22896.366.js"]}

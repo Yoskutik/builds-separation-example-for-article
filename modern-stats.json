@@ -1,0 +1,115 @@
+{
+  "name": "modern",
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 4489,
+      "sizes": {
+        "javascript": 3876,
+        "css/mini-extract": 613
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "2950c406b1620be28790.165.css",
+        "2950c406b1620be28790.165.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "5e50002de93abcd6c23a",
+      "childrenByOrder": {
+        "prefetch": [
+          366
+        ]
+      },
+      "id": 165
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 401575,
+      "sizes": {
+        "javascript": 389262,
+        "css/mini-extract": 366,
+        "runtime": 11947
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "2950c406b1620be28790.main.css",
+        "2950c406b1620be28790.main.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "8172f5bcd910045dff41",
+      "childrenByOrder": {
+        "prefetch": [
+          165
+        ]
+      },
+      "id": 179
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors) (name: vendors)",
+      "size": 140822,
+      "sizes": {
+        "javascript": 140822
+      },
+      "names": [
+        "vendors"
+      ],
+      "idHints": [
+        "defaultVendors"
+      ],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "2950c406b1620be28790.vendors.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "fb379265c3cc2c83b3ee",
+      "childrenByOrder": {},
+      "id": 216
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 1096,
+      "sizes": {
+        "javascript": 673,
+        "css/mini-extract": 423
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "2950c406b1620be28790.366.css",
+        "2950c406b1620be28790.366.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "bb216732979dea25fcc7",
+      "childrenByOrder": {},
+      "id": 366
+    }
+  ]
+}

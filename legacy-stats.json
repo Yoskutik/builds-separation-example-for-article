@@ -1,0 +1,115 @@
+{
+  "name": "legacy",
+  "chunks": [
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": true,
+      "recorded": false,
+      "size": 775792,
+      "sizes": {
+        "javascript": 763121,
+        "css/mini-extract": 366,
+        "runtime": 12305
+      },
+      "names": [
+        "main"
+      ],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "dc81cfb7bc0bcd5e2bf9.main_legacy.css",
+        "dc81cfb7bc0bcd5e2bf9.main_legacy.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "e28e0572e83b3b5077da",
+      "childrenByOrder": {
+        "prefetch": [
+          393
+        ]
+      },
+      "id": 179
+    },
+    {
+      "rendered": true,
+      "initial": true,
+      "entry": false,
+      "recorded": false,
+      "reason": "split chunk (cache group: defaultVendors) (name: vendors)",
+      "size": 140822,
+      "sizes": {
+        "javascript": 140822
+      },
+      "names": [
+        "vendors"
+      ],
+      "idHints": [
+        "defaultVendors"
+      ],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "dc81cfb7bc0bcd5e2bf9.vendors_legacy.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "adce86674aaeee0c1a2c",
+      "childrenByOrder": {},
+      "id": 216
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 1374,
+      "sizes": {
+        "javascript": 686,
+        "css/mini-extract": 688
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "dc81cfb7bc0bcd5e2bf9.366_legacy.css",
+        "dc81cfb7bc0bcd5e2bf9.366_legacy.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "b7cabc806edde38407ec",
+      "childrenByOrder": {},
+      "id": 366
+    },
+    {
+      "rendered": true,
+      "initial": false,
+      "entry": false,
+      "recorded": false,
+      "size": 7582,
+      "sizes": {
+        "javascript": 6310,
+        "css/mini-extract": 1272
+      },
+      "names": [],
+      "idHints": [],
+      "runtime": [
+        "main"
+      ],
+      "files": [
+        "dc81cfb7bc0bcd5e2bf9.393_legacy.css",
+        "dc81cfb7bc0bcd5e2bf9.393_legacy.js"
+      ],
+      "auxiliaryFiles": [],
+      "hash": "94432d11581064d42107",
+      "childrenByOrder": {
+        "prefetch": [
+          366
+        ]
+      },
+      "id": 393
+    }
+  ]
+}

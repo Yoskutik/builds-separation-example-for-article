@@ -1,1 +1,0 @@
-module.exports={"entryFiles":["eade4170556943057ab8.main_legacy.css","4c1e06ce5e31298a70e0.main_legacy.js","83c345530fe0e956ab78.vendors_legacy.js"],"otherFiles":["991d6967e91178471af8.393_legacy.css","746c44e6233df35a7eb6.393_legacy.js","ed39ea89e7d81acf50dd.366_legacy.css","409f3b1dea308186aaa6.366_legacy.js"]}
