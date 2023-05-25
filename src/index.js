@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import 'core-js';
 import './index.css';
 
-const App = React.lazy(() => import('./App'));
+const App = React.lazy(() => import(/* webpackPrefetch: true */ './App'));
 
 const root = ReactDOM.createRoot(document.body);
 root.render(

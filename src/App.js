@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const LazyChunk = React.lazy(() => import('./LazyChunk'));
+const LazyChunk = React.lazy(() => import(/* webpackPrefetch: true */ './LazyChunk'));
 
 const App = () => {
   const [shouldShowLazyChunk, setShouldShowLazyChunk] = useState(false);
 
   const toggleBuild = () => {
-    location.href = window.LEGACY ? `${location.pathname}?es-modern=1` : `${location.pathname}?es-legacy=1`;
+    location.href = window.LEGACY ? `${location.pathname}?forced-modern=1` : `${location.pathname}?forced-legacy=1`;
   };
 
   return (

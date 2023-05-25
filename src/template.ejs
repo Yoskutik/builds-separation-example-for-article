@@ -1,21 +1,35 @@
 <%
-const uniq = (...args) => {
-  const arr = [];
-  args.forEach(arg => arr.push(...arg));
-  return [...new Set(arr)];
-};
+
+const stats = JSON.parse(compilation.assets['StatsPlugin_allStats.json'].source());
+delete compilation.assets['StatsPlugin_allStats.json'];
+
+const modernInitialFiles = stats.modern.chunks
+    .filter(it => it.initial)
+    .flatMap(it => it.files);
+const legacyInitialFiles = stats.legacy.chunks
+    .filter(it => it.initial)
+    .flatMap(it => it.files);
 
 // Entry files must be injected for application to start
-const entryFilesJSModern = modernMeta.entryFiles.filter(it => it.endsWith('.js'));
-const entryFilesJSLegacy = legacyMeta.entryFiles.filter(it => it.endsWith('.js'));
-const entryFilesCSSModern = modernMeta.entryFiles.filter(it => it.endsWith('.css'));
-const entryFilesCSSLegacy = legacyMeta.entryFiles.filter(it => it.endsWith('.css'));
+const entryFilesJSModern = modernInitialFiles.filter(it => it.endsWith('.js'));
+const entryFilesJSLegacy = legacyInitialFiles.filter(it => it.endsWith('.js'));
+const entryFilesCSSModern = modernInitialFiles.filter(it => it.endsWith('.css'));
+const entryFilesCSSLegacy = legacyInitialFiles.filter(it => it.endsWith('.css'));
 
-// There's no need to control other files, but I decided to prefetch them
-const otherFilesJSModern = modernMeta.otherFiles.filter(it => it.endsWith('.js'));
-const otherFilesJSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.js'));
-const otherFilesCSSModern = modernMeta.otherFiles.filter(it => it.endsWith('.css'));
-const otherFilesCSSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.css'));
+const modernPrefetchIds = stats.modern.chunks
+    .flatMap(it => it.childrenByOrder?.prefetch ?? []);
+const legacyPrefetchIds = stats.legacy.chunks
+    .flatMap(it => it.childrenByOrder?.prefetch ?? []);
+
+const modernPrefetchFiles = modernPrefetchIds
+    .flatMap(id => stats.modern.chunks.find(it => it.id === id).files);
+const legacyPrefetchFiles = legacyPrefetchIds
+    .flatMap(id => stats.legacy.chunks.find(it => it.id === id).files);
+
+const modernPrefetchFilesJS = modernPrefetchFiles.filter(it => it.endsWith('.js'));
+const modernPrefetchFilesCSS = modernPrefetchFiles.filter(it => it.endsWith('.css'));
+const legacyPrefetchFilesJS = legacyPrefetchFiles.filter(it => it.endsWith('.js'));
+const legacyPrefetchFilesCSS = legacyPrefetchFiles.filter(it => it.endsWith('.css'));
 %>
 
 <!doctype html>
@@ -27,10 +41,10 @@ const otherFilesCSSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.css
 <script>
   !function () {
     // Force enabling legacy mode for debugging purposes
-    if (location.search.indexOf('es-legacy') !== -1) {
+    if (location.search.indexOf('forced-legacy') !== -1) {
       window.LEGACY = true;
-    // Force disabling legacy mode for debugging purposes
-    } else if (location.search.indexOf('es-modern') !== -1) {
+      // Force disabling legacy mode for debugging purposes
+    } else if (location.search.indexOf('forced-modern') !== -1) {
       window.LEGACY = false;
     } else {
       try {
@@ -60,10 +74,10 @@ const otherFilesCSSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.css
       document.head.appendChild(link);
     }
 
-    var entryFilesJSModern = <%- JSON.stringify(entryFilesJSModern) %>;
-    var entryFilesJSLegacy = <%- JSON.stringify(entryFilesJSLegacy) %>;
-    var entryFilesCSSModern = <%- JSON.stringify(entryFilesCSSModern) %>;
-    var entryFilesCSSLegacy = <%- JSON.stringify(entryFilesCSSLegacy) %>;
+    var entryFilesJSModern = <%= JSON.stringify(entryFilesJSModern) %>;
+    var entryFilesJSLegacy = <%= JSON.stringify(entryFilesJSLegacy) %>;
+    var entryFilesCSSModern = <%= JSON.stringify(entryFilesCSSModern) %>;
+    var entryFilesCSSLegacy = <%= JSON.stringify(entryFilesCSSLegacy) %>;
 
     // Use entry
     (LEGACY ? entryFilesJSLegacy : entryFilesJSModern).forEach(
@@ -83,18 +97,18 @@ const otherFilesCSSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.css
       },
     );
 
-    var otherFilesJSModern = <%- JSON.stringify(otherFilesJSModern) %>;
-    var otherFilesJSLegacy = <%- JSON.stringify(otherFilesJSLegacy) %>;
-    var otherFilesCSSModern = <%- JSON.stringify(otherFilesCSSModern) %>;
-    var otherFilesCSSLegacy = <%- JSON.stringify(otherFilesCSSLegacy) %>;
+    var prefetchFilesJSModern = <%= JSON.stringify(modernPrefetchFilesJS) %>;
+    var prefetchFilesCSSModern = <%= JSON.stringify(modernPrefetchFilesCSS) %>;
+    var prefetchFilesJSLegacy = <%= JSON.stringify(legacyPrefetchFilesJS) %>;
+    var prefetchFilesCSSLegacy = <%= JSON.stringify(legacyPrefetchFilesCSS) %>;
 
     // Prefetching all possible chunks
-    (LEGACY ? otherFilesJSLegacy : otherFilesJSModern).forEach(
+    (LEGACY ? prefetchFilesJSLegacy : prefetchFilesJSModern).forEach(
       function (chunkName) {
         addPrefetch(chunkName, 'script');
       },
     );
-    (LEGACY ? otherFilesCSSLegacy : otherFilesCSSModern).forEach(
+    (LEGACY ? prefetchFilesCSSLegacy : prefetchFilesCSSModern).forEach(
       function (chunkName) {
         addPrefetch(chunkName, 'style');
       },
@@ -102,10 +116,10 @@ const otherFilesCSSLegacy = legacyMeta.otherFiles.filter(it => it.endsWith('.css
   }();
 </script>
 <style>
-  body {
-    background-color: #282c34;
-    margin: 0;
-  }
+    body {
+        background-color: #282c34;
+        margin: 0;
+    }
 </style>
 </head>
 <body>
